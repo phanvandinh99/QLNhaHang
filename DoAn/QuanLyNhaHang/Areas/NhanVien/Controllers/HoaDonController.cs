@@ -30,7 +30,7 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
 
                 //mà bàn đang trống => hóa đơn cũng trống => tạo mới hóa đơn
                 HoaDon hd = new HoaDon();
-                hd.TenKhachHang = "Restaurant Triệu Hảo";
+                hd.TenKhachHang = "Khách Hàng A";
                 hd.SDTKhachHang = "0123456789";
                 hd.TongHoaDon = 1;
                 hd.NgayTao = DateTime.Now;
@@ -472,7 +472,7 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
             }
 
             HoaDon hoaDon = db.HoaDons.SingleOrDefault(n => n.MaHoaDon == iMaHoaDon);
-            Ban ban = db.Bans.SingleOrDefault(n => n.MaBan == hoaDon.MaBan_id);
+            Tang ban = db.Bans.SingleOrDefault(n => n.MaBan == hoaDon.MaBan_id);
             if (hoaDon != null)
             {
 
@@ -501,7 +501,7 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
         public ActionResult HuyHoaDon(int iMaHoaDon)
         {
             HoaDon hoaDon = db.HoaDons.SingleOrDefault(n => n.MaHoaDon == iMaHoaDon);
-            Ban ban = db.Bans.SingleOrDefault(n => n.MaBan == hoaDon.MaBan_id);
+            Tang ban = db.Bans.SingleOrDefault(n => n.MaBan == hoaDon.MaBan_id);
             if (ban != null)
             {
                 ban.TinhTrang = 0;

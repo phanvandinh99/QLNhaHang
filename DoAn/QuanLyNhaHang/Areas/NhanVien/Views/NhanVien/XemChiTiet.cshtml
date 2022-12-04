@@ -27,12 +27,12 @@
                                 <div class="mb-3">Tên Đăng Nhập: @Model.TaiKhoanNV</div>
                                 <div class="mb-3">Mật Khẩu NV: @Model.MatKhauNV</div>
                                 <div class="mb-3">Ngày Sinh: @string.Format("{0:dd/MM/yyyy}", Model.NgaySinh)</div>
-                                <div class="mb-3">Loại Nguyên Liệu: @Model.SoDienThoai</div>
+                                <div class="mb-3">Số Điện Thoại: @Model.SoDienThoai</div>
                                 <div class="mb-3">Quyền: @Model.Quyen.TenQuyen</div>
                             </div>
                             <div>
                                 <a href="/NhanVien/NhanVien/DSNhanVien" class="btn btn-danger">Trở Về</a>
-                                <a href="/NhanVienKho/NguyenLieu/CapNhat?iMaNguyenLieu=@Model.TaiKhoanNV" class="btn btn-primary">Cập Nhật</a>
+                                <a href="/NhanVien/NhanVien/CapNhat?sTaiKhoanNV=@Model.TaiKhoanNV" class="btn btn-primary">Cập Nhật</a>
                             </div>
                         </div>
                     </div>

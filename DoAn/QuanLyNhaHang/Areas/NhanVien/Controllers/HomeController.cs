@@ -44,6 +44,7 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
             var listBan = db.Bans.Where(n => n.MaTang_id == iMaTang).OrderBy(n => n.MaBan).ToList();
             return View(listBan);
         }
+
         public ActionResult Par_Tang()
         {
             var listTang = db.Tangs.ToList().OrderBy(n => n.MaTang);

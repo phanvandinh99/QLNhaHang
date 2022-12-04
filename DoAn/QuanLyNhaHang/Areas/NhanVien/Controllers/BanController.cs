@@ -40,9 +40,9 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult ThemBan(Ban Model)
+        public ActionResult ThemBan(Tang Model)
         {
-            Ban ban = new Ban();
+            Tang ban = new Tang();
             ban.TenBan = Model.TenBan;
             ban.SoGhe = Model.SoGhe;
             ban.Vip = Model.Vip;
@@ -61,9 +61,9 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
             return View(ban);
         }
         [HttpPost]
-        public ActionResult CapNhatBan(Ban Model)
+        public ActionResult CapNhatBan(Tang Model)
         {
-            Ban ban = new Ban();
+            Tang ban = new Tang();
             ban.TenBan = Model.TenBan;
             ban.SoGhe = Model.SoGhe;
             ban.Vip = Model.Vip;

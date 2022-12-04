@@ -6,33 +6,23 @@ namespace QuanLyNhaHang.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Ban")]
-    public partial class Ban
+    [Table("Khu")]
+    public partial class Khu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ban()
+        public Khu()
         {
-            HoaDons = new HashSet<HoaDon>();
+            Bans = new HashSet<Tang>();
         }
 
         [Key]
-        public int MaBan { get; set; }
+        public int MaTang { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string TenBan { get; set; }
-
-        public int SoGhe { get; set; }
-
-        public int? Vip { get; set; }
-
-        public int? TinhTrang { get; set; }
-
-        public int? MaTang_id { get; set; }
-
-        public virtual Tang Tang { get; set; }
+        public string TenTang { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HoaDon> HoaDons { get; set; }
+        public virtual ICollection<Tang> Bans { get; set; }
     }
 }

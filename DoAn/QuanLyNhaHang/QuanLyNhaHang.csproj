@@ -363,7 +363,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ban.cs" />
+    <Compile Include="Models\Tang.cs" />
     <Compile Include="Models\ChiTietHoaDon.cs" />
     <Compile Include="Models\ChiTietPhieuNhap.cs" />
     <Compile Include="Models\ChiTietSanPham.cs" />
@@ -382,7 +382,7 @@
     <Compile Include="Models\NhomMonAn.cs" />
     <Compile Include="Models\PhieuNhap.cs" />
     <Compile Include="Models\Quyen.cs" />
-    <Compile Include="Models\Tang.cs" />
+    <Compile Include="Models\Khu.cs" />
     <Compile Include="Models\XuatKho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

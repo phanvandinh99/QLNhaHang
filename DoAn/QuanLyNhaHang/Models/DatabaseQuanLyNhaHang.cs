@@ -12,7 +12,7 @@ namespace QuanLyNhaHang.Models
         {
         }
 
-        public virtual DbSet<Ban> Bans { get; set; }
+        public virtual DbSet<Tang> Bans { get; set; }
         public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
         public virtual DbSet<ChiTietSanPham> ChiTietSanPhams { get; set; }
@@ -30,12 +30,12 @@ namespace QuanLyNhaHang.Models
         public virtual DbSet<NhomMonAn> NhomMonAns { get; set; }
         public virtual DbSet<PhieuNhap> PhieuNhaps { get; set; }
         public virtual DbSet<Quyen> Quyens { get; set; }
-        public virtual DbSet<Tang> Tangs { get; set; }
+        public virtual DbSet<Khu> Tangs { get; set; }
         public virtual DbSet<XuatKho> XuatKhoes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Ban>()
+            modelBuilder.Entity<Tang>()
                 .HasMany(e => e.HoaDons)
                 .WithOptional(e => e.Ban)
                 .HasForeignKey(e => e.MaBan_id);
@@ -154,9 +154,9 @@ namespace QuanLyNhaHang.Models
                 .WithOptional(e => e.Quyen)
                 .HasForeignKey(e => e.MaQuyen_id);
 
-            modelBuilder.Entity<Tang>()
+            modelBuilder.Entity<Khu>()
                 .HasMany(e => e.Bans)
-                .WithOptional(e => e.Tang)
+                .WithOptional(e => e.Khu)
                 .HasForeignKey(e => e.MaTang_id);
 
             modelBuilder.Entity<XuatKho>()

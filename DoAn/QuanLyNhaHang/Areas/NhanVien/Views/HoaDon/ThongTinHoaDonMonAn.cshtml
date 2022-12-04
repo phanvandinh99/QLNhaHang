@@ -9,7 +9,7 @@
     IEnumerable<LoaiMonAn> listLoaiMonAn = (IEnumerable<LoaiMonAn>)ViewBag.LoaiMonAn;
     IEnumerable<MonAn> listMonAn = (IEnumerable<MonAn>)ViewBag.DanhSachMonAn;
     IEnumerable<ChiTietHoaDon> listMonAnKhachChon = (IEnumerable<ChiTietHoaDon>)ViewBag.MonAnKhachChon;
-    IEnumerable<Ban> listBan = (IEnumerable<Ban>)ViewBag.Ban;
+    IEnumerable<Tang> listBan = (IEnumerable<Tang>)ViewBag.Ban;
 }
 
 <!-- #endregion -->
@@ -239,11 +239,11 @@
                                     {
                                         if (item.TinhTrang == 1) //đã có người
                                         {
-                                            <option style="color: red" value="@item.MaBan">Bàn @item.TenBan | @item.Tang.TenTang | @item.SoGhe ghế</option>
+                                            <option style="color: red" value="@item.MaBan">Bàn @item.TenBan | @item.Khu.TenTang | @item.SoGhe ghế</option>
                                         }
                                         else
                                         {
-                                            <option value="@item.MaBan" style="color:black">Bàn @item.TenBan | @item.Tang.TenTang | @item.SoGhe ghế</option>
+                                            <option value="@item.MaBan" style="color:black">Bàn @item.TenBan | @item.Khu.TenTang | @item.SoGhe ghế</option>
                                         }
                                     }
                                 </select>
