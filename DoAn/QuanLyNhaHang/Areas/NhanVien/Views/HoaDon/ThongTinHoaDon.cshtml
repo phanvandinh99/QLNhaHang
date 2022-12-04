@@ -9,7 +9,7 @@
     IEnumerable<LoaiMonAn> listLoaiMonAn = (IEnumerable<LoaiMonAn>)ViewBag.LoaiMonAn;
     IEnumerable<MonAn> listMonAn = (IEnumerable<MonAn>)ViewBag.DanhSachMonAn;
     IEnumerable<ChiTietHoaDon> listMonAnKhachChon = (IEnumerable<ChiTietHoaDon>)ViewBag.MonAnKhachChon;
-    IEnumerable<Tang> listBan = (IEnumerable<Tang>)ViewBag.Ban;
+    IEnumerable<Tang> listBan = (IEnumerable<Tang>)ViewBag.Tang;
 }
 
 <!-- #endregion -->
@@ -125,57 +125,57 @@
                     {
                         using (Html.BeginForm("ThanhToan", "HoaDon", new { @iMaHoaDon = Model.MaHoaDon }))
                         {
-                    <div class="mb-4">
-                        <div class="mb-2">
-                            <p class="text-alternate text-muted mb-1">Hóa Đơn: @Model.MaHoaDon</p>
-                        </div>
-                        <div class="mb-2">
-                            <p class="text-alternate text-muted mb-1">Giờ Vào: @string.Format("{0:hh:mm:ss tt}", Model.NgayTao)</p>
-                        </div>
-                        <div class="mb-2">
-                            <p class="text-alternate text-muted mb-1">SL Món Ăn: @ViewBag.SoLuongMonAn </p>
-                        </div>
-                        @if (Model.Ban.Vip == 1)
-                        {
-                            <div class="mb-2">
-                                <label class="text-alternate text-muted mb-1">Phí Phòng Vip (%)</label>
-                                <input type="number" min="0" max="100" class="form-control mask-currency" value="10" readonly="readonly">
-                            </div>
-                        }
-                        @if (Model.TongHoaDon >= 5)
-                        {
-                            <div class="mb-2">
-                                <label class="text-alternate text-muted mb-1">Khách Hàng Thành Viên (5HD)</label>
-                                <input type="number" min="0" class="form-control mask-currency" value="0" name="txtGiamGiaKhachHang" id="txtGiamGiaKhachHang">
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="mb-2">
-                                <label class="text-alternate text-muted mb-1">Khách Hàng Thành Viên (5HD)</label>
-                                <input type="number" min="0" class="form-control mask-currency" value="0" name="txtGiamGiaKhachHang" id="txtGiamGiaKhachHang" readonly="readonly">
-                            </div>
-                        }
+                            <div class="mb-4">
+                                <div class="mb-2">
+                                    <p class="text-alternate text-muted mb-1">Hóa Đơn: @Model.MaHoaDon</p>
+                                </div>
+                                <div class="mb-2">
+                                    <p class="text-alternate text-muted mb-1">Giờ Vào: @string.Format("{0:hh:mm:ss tt}", Model.NgayTao)</p>
+                                </div>
+                                <div class="mb-2">
+                                    <p class="text-alternate text-muted mb-1">SL Món Ăn: @ViewBag.SoLuongMonAn </p>
+                                </div>
+                                @if (Model.Tang.Vip == 1)
+                                {
+                                    <div class="mb-2">
+                                        <label class="text-alternate text-muted mb-1">Phí Phòng Vip (%)</label>
+                                        <input type="number" min="0" max="100" class="form-control mask-currency" value="10" readonly="readonly">
+                                    </div>
+                                }
+                                @if (Model.TongHoaDon >= 5)
+                                {
+                                    <div class="mb-2">
+                                        <label class="text-alternate text-muted mb-1">Khách Hàng Thành Viên (5HD)</label>
+                                        <input type="number" min="0" class="form-control mask-currency" value="0" name="txtGiamGiaKhachHang" id="txtGiamGiaKhachHang">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mb-2">
+                                        <label class="text-alternate text-muted mb-1">Khách Hàng Thành Viên (5HD)</label>
+                                        <input type="number" min="0" class="form-control mask-currency" value="0" name="txtGiamGiaKhachHang" id="txtGiamGiaKhachHang" readonly="readonly">
+                                    </div>
+                                }
 
-                        <div class="mb-2">
-                            <label class="text-alternate text-muted mb-1">Giảm Giá (vnđ)</label>
-                            <input type="number" min="0" class="form-control mask-currency" value="0" name="txtGiamGiaVND" id="txtGiamGias">
-                        </div>
-                        <div class="mb-2">
-                            <label class="text-alternate text-muted mb-1">Giảm Giá (%)</label>
-                            <input type="number" min="0" max="100" class="form-control mask-currency" value="0" name="txtGiamGiaPhanTram" id="txtGiamGiaPhanTram">
-                        </div>
+                                <div class="mb-2">
+                                    <label class="text-alternate text-muted mb-1">Giảm Giá (vnđ)</label>
+                                    <input type="number" min="0" class="form-control mask-currency" value="0" name="txtGiamGiaVND" id="txtGiamGias">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="text-alternate text-muted mb-1">Giảm Giá (%)</label>
+                                    <input type="number" min="0" max="100" class="form-control mask-currency" value="0" name="txtGiamGiaPhanTram" id="txtGiamGiaPhanTram">
+                                </div>
 
-                        <div class="mb-2">
-                            <p class="text-alternate text-muted mb-1">Tổng Tiền:</p>
-                            <div class="cta-2">
-                                <span>
-                                    <input style="display:none" id="TongTienMonAn" value="@ViewBag.TongTienMonAn" />
-                                    <span id="TongTienMonAn" class="text-alternate text-muted cta-2">@string.Format("{0:0,0}", ViewBag.TongTienMonAn) vnđ</span>
-                                </span>
+                                <div class="mb-2">
+                                    <p class="text-alternate text-muted mb-1">Tổng Tiền:</p>
+                                    <div class="cta-2">
+                                        <span>
+                                            <input style="display:none" id="TongTienMonAn" value="@ViewBag.TongTienMonAn" />
+                                            <span id="TongTienMonAn" class="text-alternate text-muted cta-2">@string.Format("{0:0,0}", ViewBag.TongTienMonAn) vnđ</span>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
                             <button class="btn btn-icon btn-icon-end btn-primary w-100" type="submit">
                                 <span>THANH TOÁN</span>
@@ -199,7 +199,7 @@
 
                         <div class="mb-4">
                             <div class="mb-2">
-                                <p class="text-alternate text-muted mb-1">Bàn: @Model.Ban.TenBan | @Model.Ban.SoGhe Ghế</p>
+                                <p class="text-alternate text-muted mb-1">Bàn: @Model.Tang.TenBan | @Model.Tang.SoGhe Ghế</p>
                                 <p class="text-alternate text-muted mb-1">Hóa Đơn: @Model.MaHoaDon</p>
                             </div>
                             <div class="mb-2">
@@ -233,8 +233,8 @@
                     <div class="card-body">
                         <div class="mb-4">
                             <div class="mb-2">
-                                <label class="text-alternate text-muted mb-1" style="text-align:center">Bàn @Model.Ban.TenBan | @Model.Ban.SoGhe ghế</label>
-                                <select class="form-select" name="Ban">
+                                <label class="text-alternate text-muted mb-1" style="text-align:center">Bàn @Model.Tang.TenBan | @Model.Tang.SoGhe ghế</label>
+                                <select class="form-select" name="Tang">
                                     @foreach (var item in listBan)
                                     {
                                         if (item.TinhTrang == 1) //đã có người
@@ -258,6 +258,39 @@
                     </div>
                 }
             </div>
+            <!-- #region Nhân Viên Chạy Bàn -->
+            <div class="card mb-5 w-100 sw-lg-35" style="margin-bottom:0.5rem !important">
+                @using (Html.BeginForm("ChuyenBan", "HoaDon", new { @iMaHoaDon = Model.MaHoaDon }))
+                {
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <div class="mb-2">
+                                <label class="text-alternate text-muted mb-1" style="text-align:center">Danh Sách Nhân Viên Phục Vụ Tiệc Này:</label>
+                                <select class="form-select" name="Tang">
+                                    @foreach (var item in listBan)
+                                    {
+                                        if (item.TinhTrang == 1) //đã có người
+                                        {
+                                            <option style="color: red" value="@item.MaBan">Bàn @item.TenBan | @item.Khu.TenTang | @item.SoGhe ghế</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.MaBan" style="color:black">Bàn @item.TenBan | @item.Khu.TenTang | @item.SoGhe ghế</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-icon btn-icon-end btn-primary w-100" type="submit">
+                            <span>Thêm Nhân Viên</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-chevron-right"><path d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path></svg>
+                        </button>
+                        <br />
+                    </div>
+                }
+            </div>
+            <!-- #endregion -->
             <!-- #endregion -->
         </div>
 
@@ -391,7 +424,7 @@
                 <div class="mb-2">
                     <p class="text-alternate text-muted mb-1">KH: @Model.TenKhachHang</p>
                     <p class="text-alternate text-muted mb-1">SDT: @Model.SDTKhachHang</p>
-                    <p class="text-alternate text-muted mb-1">Bàn: @Model.Ban.TenBan</p>
+                    <p class="text-alternate text-muted mb-1">Bàn: @Model.Tang.TenBan</p>
                     <p class="text-alternate text-muted mb-1">Hóa Đơn: @Model.MaHoaDon</p>
                 </div>
                 <div class="mb-2">

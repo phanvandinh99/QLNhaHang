@@ -19,7 +19,7 @@ namespace QuanLyNhaHang.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaNguyenLieu_id { get; set; }
 
-        public double? SoLuongDung { get; set; }
+        public double SoLuongDung { get; set; }
 
         public int? Tru { get; set; }
 

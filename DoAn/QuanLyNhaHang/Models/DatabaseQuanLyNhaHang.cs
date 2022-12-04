@@ -12,98 +12,108 @@ namespace QuanLyNhaHang.Models
         {
         }
 
-        public virtual DbSet<Tang> Bans { get; set; }
-        public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
-        public virtual DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
-        public virtual DbSet<ChiTietSanPham> ChiTietSanPhams { get; set; }
-        public virtual DbSet<HoaDon> HoaDons { get; set; }
-        public virtual DbSet<HoanTra> HoanTras { get; set; }
-        public virtual DbSet<LichSuGoiMon> LichSuGoiMons { get; set; }
-        public virtual DbSet<LoaiMonAn> LoaiMonAns { get; set; }
-        public virtual DbSet<LoaiNguyenLieu> LoaiNguyenLieus { get; set; }
-        public virtual DbSet<MonAn> MonAns { get; set; }
-        public virtual DbSet<NguyenLieu> NguyenLieus { get; set; }
-        public virtual DbSet<NguyenLieuTra> NguyenLieuTras { get; set; }
-        public virtual DbSet<NguyenLieuXuat> NguyenLieuXuats { get; set; }
-        public virtual DbSet<NhaCC> NhaCCs { get; set; }
-        public virtual DbSet<NhanVien> NhanViens { get; set; }
-        public virtual DbSet<NhomMonAn> NhomMonAns { get; set; }
-        public virtual DbSet<PhieuNhap> PhieuNhaps { get; set; }
-        public virtual DbSet<Quyen> Quyens { get; set; }
-        public virtual DbSet<Khu> Tangs { get; set; }
-        public virtual DbSet<XuatKho> XuatKhoes { get; set; }
+        public virtual DbSet<ChiTietHoaDon> ChiTietHoaDon { get; set; }
+        public virtual DbSet<ChiTietPhieuNhap> ChiTietPhieuNhap { get; set; }
+        public virtual DbSet<ChiTietSanPham> ChiTietSanPham { get; set; }
+        public virtual DbSet<HoaDon> HoaDon { get; set; }
+        public virtual DbSet<HoanTra> HoanTra { get; set; }
+        public virtual DbSet<Khu> Khu { get; set; }
+        public virtual DbSet<LichSuGoiMon> LichSuGoiMon { get; set; }
+        public virtual DbSet<LoaiMonAn> LoaiMonAn { get; set; }
+        public virtual DbSet<LoaiNguyenLieu> LoaiNguyenLieu { get; set; }
+        public virtual DbSet<MonAn> MonAn { get; set; }
+        public virtual DbSet<NguyenLieu> NguyenLieu { get; set; }
+        public virtual DbSet<NguyenLieuTra> NguyenLieuTra { get; set; }
+        public virtual DbSet<NguyenLieuXuat> NguyenLieuXuat { get; set; }
+        public virtual DbSet<NhaCC> NhaCC { get; set; }
+        public virtual DbSet<NhanVien> NhanVien { get; set; }
+        public virtual DbSet<NhanVienChayBan> NhanVienChayBan { get; set; }
+        public virtual DbSet<NhomMonAn> NhomMonAn { get; set; }
+        public virtual DbSet<PhieuNhap> PhieuNhap { get; set; }
+        public virtual DbSet<Quyen> Quyen { get; set; }
+        public virtual DbSet<Tang> Tang { get; set; }
+        public virtual DbSet<XuatKho> XuatKho { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Tang>()
-                .HasMany(e => e.HoaDons)
-                .WithOptional(e => e.Ban)
-                .HasForeignKey(e => e.MaBan_id);
+            modelBuilder.Entity<HoaDon>()
+                .Property(e => e.SDTKhachHang)
+                .IsUnicode(false);
 
             modelBuilder.Entity<HoaDon>()
-                .HasMany(e => e.ChiTietHoaDons)
+                .HasMany(e => e.ChiTietHoaDon)
                 .WithRequired(e => e.HoaDon)
                 .HasForeignKey(e => e.MaHoaDon_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<HoaDon>()
-                .HasMany(e => e.LichSuGoiMons)
+                .HasMany(e => e.LichSuGoiMon)
                 .WithOptional(e => e.HoaDon)
                 .HasForeignKey(e => e.MaHoaDon_id);
 
+            modelBuilder.Entity<HoaDon>()
+                .HasMany(e => e.NhanVienChayBan)
+                .WithRequired(e => e.HoaDon)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<HoanTra>()
-                .HasMany(e => e.NguyenLieuTras)
+                .HasMany(e => e.NguyenLieuTra)
                 .WithRequired(e => e.HoanTra)
                 .HasForeignKey(e => e.MaHoanTra_id)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Khu>()
+                .HasMany(e => e.Tang)
+                .WithOptional(e => e.Khu)
+                .HasForeignKey(e => e.MaTang_id);
+
             modelBuilder.Entity<LoaiMonAn>()
-                .HasMany(e => e.MonAns)
+                .HasMany(e => e.MonAn)
                 .WithOptional(e => e.LoaiMonAn)
                 .HasForeignKey(e => e.MaLMA_id);
 
             modelBuilder.Entity<LoaiNguyenLieu>()
-                .HasMany(e => e.NguyenLieux)
+                .HasMany(e => e.NguyenLieu)
                 .WithOptional(e => e.LoaiNguyenLieu)
                 .HasForeignKey(e => e.MaLNL_id);
 
             modelBuilder.Entity<MonAn>()
-                .HasMany(e => e.ChiTietHoaDons)
+                .HasMany(e => e.ChiTietHoaDon)
                 .WithRequired(e => e.MonAn)
                 .HasForeignKey(e => e.MaMonAn_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<MonAn>()
-                .HasMany(e => e.ChiTietSanPhams)
+                .HasMany(e => e.ChiTietSanPham)
                 .WithRequired(e => e.MonAn)
                 .HasForeignKey(e => e.MaMonAn_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<MonAn>()
-                .HasMany(e => e.LichSuGoiMons)
+                .HasMany(e => e.LichSuGoiMon)
                 .WithOptional(e => e.MonAn)
                 .HasForeignKey(e => e.MaMonAn_id);
 
             modelBuilder.Entity<NguyenLieu>()
-                .HasMany(e => e.ChiTietPhieuNhaps)
+                .HasMany(e => e.ChiTietPhieuNhap)
                 .WithRequired(e => e.NguyenLieu)
                 .HasForeignKey(e => e.MaNguyenLieu_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<NguyenLieu>()
-                .HasMany(e => e.ChiTietSanPhams)
+                .HasMany(e => e.ChiTietSanPham)
                 .WithRequired(e => e.NguyenLieu)
                 .HasForeignKey(e => e.MaNguyenLieu_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<NguyenLieu>()
-                .HasMany(e => e.NguyenLieuXuats)
+                .HasMany(e => e.NguyenLieuXuat)
                 .WithRequired(e => e.NguyenLieu)
                 .HasForeignKey(e => e.MaNguyenLieu_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<NguyenLieu>()
-                .HasMany(e => e.NguyenLieuTras)
+                .HasMany(e => e.NguyenLieuTra)
                 .WithRequired(e => e.NguyenLieu)
                 .HasForeignKey(e => e.MaNguyenLieu_id)
                 .WillCascadeOnDelete(false);
@@ -113,7 +123,7 @@ namespace QuanLyNhaHang.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<NhaCC>()
-                .HasMany(e => e.PhieuNhaps)
+                .HasMany(e => e.PhieuNhap)
                 .WithOptional(e => e.NhaCC)
                 .HasForeignKey(e => e.MaNCC_id);
 
@@ -130,12 +140,21 @@ namespace QuanLyNhaHang.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<NhanVien>()
-                .HasMany(e => e.PhieuNhaps)
+                .HasMany(e => e.NhanVienChayBan)
+                .WithRequired(e => e.NhanVien)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<NhanVien>()
+                .HasMany(e => e.PhieuNhap)
                 .WithOptional(e => e.NhanVien)
                 .HasForeignKey(e => e.TaiKhoanNV_id);
 
+            modelBuilder.Entity<NhanVienChayBan>()
+                .Property(e => e.TaiKhoanNV)
+                .IsUnicode(false);
+
             modelBuilder.Entity<NhomMonAn>()
-                .HasMany(e => e.MonAns)
+                .HasMany(e => e.MonAn)
                 .WithOptional(e => e.NhomMonAn)
                 .HasForeignKey(e => e.MaNMA_id);
 
@@ -144,23 +163,23 @@ namespace QuanLyNhaHang.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<PhieuNhap>()
-                .HasMany(e => e.ChiTietPhieuNhaps)
+                .HasMany(e => e.ChiTietPhieuNhap)
                 .WithRequired(e => e.PhieuNhap)
                 .HasForeignKey(e => e.MaPhieuNhap_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Quyen>()
-                .HasMany(e => e.NhanViens)
+                .HasMany(e => e.NhanVien)
                 .WithOptional(e => e.Quyen)
                 .HasForeignKey(e => e.MaQuyen_id);
 
-            modelBuilder.Entity<Khu>()
-                .HasMany(e => e.Bans)
-                .WithOptional(e => e.Khu)
-                .HasForeignKey(e => e.MaTang_id);
+            modelBuilder.Entity<Tang>()
+                .HasMany(e => e.HoaDon)
+                .WithOptional(e => e.Tang)
+                .HasForeignKey(e => e.MaBan_id);
 
             modelBuilder.Entity<XuatKho>()
-                .HasMany(e => e.NguyenLieuXuats)
+                .HasMany(e => e.NguyenLieuXuat)
                 .WithRequired(e => e.XuatKho)
                 .HasForeignKey(e => e.MaXuatKho_id)
                 .WillCascadeOnDelete(false);

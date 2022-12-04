@@ -12,7 +12,7 @@ namespace QuanLyNhaHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public XuatKho()
         {
-            NguyenLieuXuats = new HashSet<NguyenLieuXuat>();
+            NguyenLieuXuat = new HashSet<NguyenLieuXuat>();
         }
 
         [Key]
@@ -20,8 +20,7 @@ namespace QuanLyNhaHang.Models
 
         public DateTime? NgayXuat { get; set; }
 
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NguyenLieuXuat> NguyenLieuXuats { get; set; }
+        public virtual ICollection<NguyenLieuXuat> NguyenLieuXuat { get; set; }
     }
 }

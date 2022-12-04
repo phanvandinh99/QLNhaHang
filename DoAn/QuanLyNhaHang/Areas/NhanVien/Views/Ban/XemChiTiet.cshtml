@@ -1,5 +1,5 @@
 ﻿@using QuanLyNhaHang.Models
-@model Ban
+@model Tang
 @{
     ViewBag.Title = "XemChiTiet";
     Layout = "~/Areas/NhanVien/Views/Shared/_LayoutNhanVien.cshtml";
@@ -42,7 +42,7 @@
                                 {
                                     <div class="mb-3">Trạng Thái: Thường</div>
                                 }
-                                <div class="mb-3">Vị Trí: @Model.Tang.TenTang</div>
+                                <div class="mb-3">Vị Trí: @Model.Khu.TenTang</div>
                             </div>
                             <div>
                                 <a href="/NhanVienKho/NguyenLieu/HaiSan" class="btn btn-danger">Trở Về</a>

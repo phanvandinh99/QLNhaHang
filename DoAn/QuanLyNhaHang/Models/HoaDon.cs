@@ -12,8 +12,9 @@ namespace QuanLyNhaHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HoaDon()
         {
-            ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
-            LichSuGoiMons = new HashSet<LichSuGoiMon>();
+            ChiTietHoaDon = new HashSet<ChiTietHoaDon>();
+            LichSuGoiMon = new HashSet<LichSuGoiMon>();
+            NhanVienChayBan = new HashSet<NhanVienChayBan>();
         }
 
         [Key]
@@ -21,8 +22,12 @@ namespace QuanLyNhaHang.Models
 
         [StringLength(100)]
         public string TenKhachHang { get; set; }
+
+        [StringLength(10)]
         public string SDTKhachHang { get; set; }
+
         public int? TongHoaDon { get; set; }
+
         public DateTime? NgayTao { get; set; }
 
         public DateTime? NgayThanhToan { get; set; }
@@ -36,12 +41,15 @@ namespace QuanLyNhaHang.Models
 
         public int? MaBan_id { get; set; }
 
-        public virtual Tang Ban { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietHoaDon> ChiTietHoaDon { get; set; }
+
+        public virtual Tang Tang { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
+        public virtual ICollection<LichSuGoiMon> LichSuGoiMon { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LichSuGoiMon> LichSuGoiMons { get; set; }
+        public virtual ICollection<NhanVienChayBan> NhanVienChayBan { get; set; }
     }
 }

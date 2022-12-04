@@ -36,7 +36,7 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
             }
             else
             {
-                var kh = db.NhanViens.SingleOrDefault(n => n.TaiKhoanNV == ssTaiKhoan & n.MatKhauNV == ssMatKhau);
+                var kh = db.NhanVien.SingleOrDefault(n => n.TaiKhoanNV == ssTaiKhoan & n.MatKhauNV == ssMatKhau);
                 if (kh == null)
                 {
                     ModelState.AddModelError("", "Tài khoản không hợp lệ !");

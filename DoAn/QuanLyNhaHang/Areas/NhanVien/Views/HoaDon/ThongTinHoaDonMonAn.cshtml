@@ -9,7 +9,7 @@
     IEnumerable<LoaiMonAn> listLoaiMonAn = (IEnumerable<LoaiMonAn>)ViewBag.LoaiMonAn;
     IEnumerable<MonAn> listMonAn = (IEnumerable<MonAn>)ViewBag.DanhSachMonAn;
     IEnumerable<ChiTietHoaDon> listMonAnKhachChon = (IEnumerable<ChiTietHoaDon>)ViewBag.MonAnKhachChon;
-    IEnumerable<Tang> listBan = (IEnumerable<Tang>)ViewBag.Ban;
+    IEnumerable<Tang> listBan = (IEnumerable<Tang>)ViewBag.Tang;
 }
 
 <!-- #endregion -->
@@ -135,7 +135,7 @@
                                 <div class="mb-2">
                                     <p class="text-alternate text-muted mb-1">SL Món Ăn: @ViewBag.SoLuongMonAn </p>
                                 </div>
-                                @if (Model.Ban.Vip == 1)
+                                @if (Model.Tang.Vip == 1)
                                 {
                                     <div class="mb-2">
                                         <label class="text-alternate text-muted mb-1">Phí Phòng Vip (%)</label>
@@ -199,7 +199,7 @@
 
                         <div class="mb-4">
                             <div class="mb-2">
-                                <p class="text-alternate text-muted mb-1">Bàn: @Model.Ban.TenBan | @Model.Ban.SoGhe Ghế</p>
+                                <p class="text-alternate text-muted mb-1">Bàn: @Model.Tang.TenBan | @Model.Tang.SoGhe Ghế</p>
                                 <p class="text-alternate text-muted mb-1">Hóa Đơn: @Model.MaHoaDon</p>
                             </div>
                             <div class="mb-2">
@@ -233,8 +233,8 @@
                     <div class="card-body">
                         <div class="mb-4">
                             <div class="mb-2">
-                                <label class="text-alternate text-muted mb-1" style="text-align:center">Bàn @Model.Ban.TenBan | @Model.Ban.SoGhe ghế</label>
-                                <select class="form-select" name="Ban">
+                                <label class="text-alternate text-muted mb-1" style="text-align:center">Bàn @Model.Tang.TenBan | @Model.Tang.SoGhe ghế</label>
+                                <select class="form-select" name="Tang">
                                     @foreach (var item in listBan)
                                     {
                                         if (item.TinhTrang == 1) //đã có người
@@ -391,7 +391,7 @@
                 <div class="mb-2">
                     <p class="text-alternate text-muted mb-1">KH: @Model.TenKhachHang</p>
                     <p class="text-alternate text-muted mb-1">SDT: @Model.SDTKhachHang</p>
-                    <p class="text-alternate text-muted mb-1">Bàn: @Model.Ban.TenBan</p>
+                    <p class="text-alternate text-muted mb-1">Bàn: @Model.Tang.TenBan</p>
                     <p class="text-alternate text-muted mb-1">Hóa Đơn: @Model.MaHoaDon</p>
                 </div>
                 <div class="mb-2">

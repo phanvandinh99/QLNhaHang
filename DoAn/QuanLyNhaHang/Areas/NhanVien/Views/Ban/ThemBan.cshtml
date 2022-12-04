@@ -47,7 +47,7 @@
                                     <select class="form-select" name="MaTang_id">
                                         @foreach (var item in listTang)
                                         {
-                                            <option value="@item.MaTang">@item.TenTang</option>
+                                            <option value="@item.MaBan">@item.TenBan</option>
                                         }
                                     </select>
                                 </div>
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="/NhanVien/Ban/DanhSachBan" class="btn btn-outline-primary">Trở Về</a>
+                <a href="/NhanVien/Tang/DanhSachBan" class="btn btn-outline-primary">Trở Về</a>
                 <button class="btn btn-danger" type="submit">Thêm Mới</button>
             </div>
         </div>

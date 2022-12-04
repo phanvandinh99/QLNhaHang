@@ -12,7 +12,7 @@ namespace QuanLyNhaHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Khu()
         {
-            Bans = new HashSet<Tang>();
+            Tang = new HashSet<Tang>();
         }
 
         [Key]
@@ -23,6 +23,6 @@ namespace QuanLyNhaHang.Models
         public string TenTang { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tang> Bans { get; set; }
+        public virtual ICollection<Tang> Tang { get; set; }
     }
 }

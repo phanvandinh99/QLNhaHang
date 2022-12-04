@@ -14,21 +14,21 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
     {
         private DatabaseQuanLyNhaHang db = new DatabaseQuanLyNhaHang();
 
-        // GET: NhanVien/HoaDons
+        // GET: NhanVien/HoaDon
         public ActionResult Index()
         {
-            var hoaDons = db.HoaDons.Include(h => h.Ban);
+            var hoaDons = db.HoaDon.Include(h => h.Tang);
             return View(hoaDons.ToList());
         }
 
-        // GET: NhanVien/HoaDons/Details/5
+        // GET: NhanVien/HoaDon/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HoaDon hoaDon = db.HoaDons.Find(id);
+            HoaDon hoaDon = db.HoaDon.Find(id);
             if (hoaDon == null)
             {
                 return HttpNotFound();
@@ -36,14 +36,14 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
             return View(hoaDon);
         }
 
-        // GET: NhanVien/HoaDons/Create
+        // GET: NhanVien/HoaDon/Create
         public ActionResult Create()
         {
-            ViewBag.MaBan_id = new SelectList(db.Bans, "MaBan", "TenBan");
+            ViewBag.MaBan_id = new SelectList(db.Tang, "MaBan", "TenBan");
             return View();
         }
 
-        // POST: NhanVien/HoaDons/Create
+        // POST: NhanVien/HoaDon/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -52,32 +52,32 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.HoaDons.Add(hoaDon);
+                db.HoaDon.Add(hoaDon);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaBan_id = new SelectList(db.Bans, "MaBan", "TenBan", hoaDon.MaBan_id);
+            ViewBag.MaBan_id = new SelectList(db.Tang, "MaBan", "TenBan", hoaDon.MaBan_id);
             return View(hoaDon);
         }
 
-        // GET: NhanVien/HoaDons/Edit/5
+        // GET: NhanVien/HoaDon/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HoaDon hoaDon = db.HoaDons.Find(id);
+            HoaDon hoaDon = db.HoaDon.Find(id);
             if (hoaDon == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaBan_id = new SelectList(db.Bans, "MaBan", "TenBan", hoaDon.MaBan_id);
+            ViewBag.MaBan_id = new SelectList(db.Tang, "MaBan", "TenBan", hoaDon.MaBan_id);
             return View(hoaDon);
         }
 
-        // POST: NhanVien/HoaDons/Edit/5
+        // POST: NhanVien/HoaDon/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -90,18 +90,18 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaBan_id = new SelectList(db.Bans, "MaBan", "TenBan", hoaDon.MaBan_id);
+            ViewBag.MaBan_id = new SelectList(db.Tang, "MaBan", "TenBan", hoaDon.MaBan_id);
             return View(hoaDon);
         }
 
-        // GET: NhanVien/HoaDons/Delete/5
+        // GET: NhanVien/HoaDon/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HoaDon hoaDon = db.HoaDons.Find(id);
+            HoaDon hoaDon = db.HoaDon.Find(id);
             if (hoaDon == null)
             {
                 return HttpNotFound();
@@ -109,13 +109,13 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
             return View(hoaDon);
         }
 
-        // POST: NhanVien/HoaDons/Delete/5
+        // POST: NhanVien/HoaDon/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            HoaDon hoaDon = db.HoaDons.Find(id);
-            db.HoaDons.Remove(hoaDon);
+            HoaDon hoaDon = db.HoaDon.Find(id);
+            db.HoaDon.Remove(hoaDon);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

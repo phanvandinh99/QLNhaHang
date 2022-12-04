@@ -15,22 +15,22 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
         public ActionResult Index()
         {
             ViewBag.DoanhThu = DoanhThuDonHang();
-            ViewBag.SumHoaDon = db.HoaDons.Count();
-            ViewBag.SumMonAn = db.MonAns.Count();
-            ViewBag.SumNhanVien = db.NhanViens.Count();
-            ViewBag.SumBan = db.Bans.Count();
+            ViewBag.SumHoaDon = db.HoaDon.Count();
+            ViewBag.SumMonAn = db.MonAn.Count();
+            ViewBag.SumNhanVien = db.NhanVien.Count();
+            ViewBag.SumBan = db.Tang.Count();
             // Món Ăn Bán Chạy
-            ViewBag.BanChay = db.MonAns.Where(n => n.MaLMA_id != 10 & n.MaMonAn != 1).ToList().OrderBy(n => n.SoLuongDaBan);
+            ViewBag.BanChay = db.MonAn.Where(n => n.MaLMA_id != 10 & n.MaMonAn != 1).ToList().OrderBy(n => n.SoLuongDaBan);
             // Hóa đơn
-            //var list = db.HoaDons.ToList().Where(n =>n.NgayTao.Value.ToString("dd/MM/yyyy")== time2).FirstOrDefault();
+            //var list = db.HoaDon.ToList().Where(n =>n.NgayTao.Value.ToString("dd/MM/yyyy")== time2).FirstOrDefault();
             //ViewBag.HoaDOn = list;
-            ViewBag.HoaDon = db.HoaDons.ToList();
+            ViewBag.HoaDon = db.HoaDon.ToList();
             return View();
         }
         public double DoanhThuDonHang()
         {
             // doanh thu tất cả 
-            double TongDoanhThu = db.HoaDons.Sum(n => n.TongTien);
+            double TongDoanhThu = db.HoaDon.Sum(n => n.TongTien);
             return TongDoanhThu;
         }
 
@@ -38,16 +38,16 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
         #region Hiển thị danh sách các bàn theo tầng khác nhau
         public ActionResult Ban(int iMaTang)
         {
-            var tenTang = db.Tangs.Find(iMaTang);
-            ViewBag.Tang = tenTang.TenTang;
+            var tenTang = db.Tang.Find(iMaTang);
+            ViewBag.Tang = tenTang.TenBan;
 
-            var listBan = db.Bans.Where(n => n.MaTang_id == iMaTang).OrderBy(n => n.MaBan).ToList();
+            var listBan = db.Tang.Where(n => n.MaTang_id == iMaTang).OrderBy(n => n.MaBan).ToList();
             return View(listBan);
         }
 
         public ActionResult Par_Tang()
         {
-            var listTang = db.Tangs.ToList().OrderBy(n => n.MaTang);
+            var listTang = db.Khu.ToList().OrderBy(n => n.MaTang);
             return PartialView(listTang);
         }
 
