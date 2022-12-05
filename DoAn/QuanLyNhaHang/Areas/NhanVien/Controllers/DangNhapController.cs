@@ -47,6 +47,11 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
                     Session["TaiKhoanNV"] = kh;
                     return Redirect("/NhanVien/Home/Index");
                 }
+                else if (kh.MaQuyen_id == 1) // nhân viên phục vụ
+                {
+                    ModelState.AddModelError("", "Nhân Viên Phục Vụ Không Được Dùng !");
+                    return View();
+                }
                 else // nhân viên kho
                 {
                     Session["TaiKhoanKho"] = kh;

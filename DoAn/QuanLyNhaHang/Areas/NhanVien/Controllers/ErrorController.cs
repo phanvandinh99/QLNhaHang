@@ -41,5 +41,11 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
         {
             return View();
         }
+
+        // Nhân viên đã tồn tại
+        public ActionResult NhanVienChayBan()
+        {
+            return View();
+        }
     }
 }

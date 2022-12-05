@@ -101,6 +101,9 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
                     }
                     ViewBag.SoLuongMonAn = SoLuongOrder(hoaDon.MaHoaDon);
                 }
+
+                ViewBag.NhanVienChayBan = db.NhanVienChayBan.Where(n => n.MaHoaDon == hoaDon.MaHoaDon).ToList(); // hiển thị nhân viên phục vụ
+
                 return View(hoaDon);
             }
         }
@@ -714,7 +717,7 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
                     }
                     #endregion
                 }
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Index", "Home");
         }
@@ -756,6 +759,8 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
             var TangHoaDon = db.HoaDon.SingleOrDefault(n => n.MaHoaDon == iMaHoaDon);
             ViewBag.TenTang = TangHoaDon.Tang.TenBan;
             ViewBag.TenKhachHang = TangHoaDon.TenKhachHang;
+            ViewBag.MaHoaDon = TangHoaDon.MaHoaDon;
+            ViewBag.NgayBatDau = TangHoaDon.NgayTao;
 
             // Hiển thị danh sách nhân viên chạy bàn hiện có
             var dsNhanVienChayBan = db.NhanVien.Where(n => n.MaQuyen_id == 4).ToList();
@@ -767,33 +772,38 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
             return View(list_NVChayBan);
         }
 
-            // Thêm Nhân Viên Chạy Bàn Thuộc Hóa Đơn
-            public ActionResult NhanVienChayBan(int iMaHoaDon)
+        // Thêm Nhân Viên Chạy Bàn Thuộc Hóa Đơn
+        public ActionResult NhanVienChayBan(int iMaHoaDon, string sTaiKhoanNV, string dt_GioBatDau, string strURL)
         {
             // Kiểm tra nhân viên này đã phục vụ bàn này chưa Nếu chu
+            var Chk_NhanVienChayBan = db.NhanVienChayBan.SingleOrDefault(n => n.MaHoaDon == iMaHoaDon & n.TaiKhoanNV == sTaiKhoanNV);
 
+            // Lấy mã nhân viên chạy bàn
+            int maNhanVienChayBan = 1;
 
-            //string tenkhachhang = f["txtTenKhachhang"].ToString();
-            //string dienThoai = f["txtSoDienThoai"].ToString();
+            // Trường hợp chưa tồn tại => Thỏa điều kiện
+            if (null == Chk_NhanVienChayBan)
+            {
+                // Thêm Nhân viên chạy bàn vào hóa đơn này
+                NhanVienChayBan nvcb = new NhanVienChayBan();
+                nvcb.MaNhanVienChayBan = maNhanVienChayBan == 0 ? 0 : maNhanVienChayBan++;
+                nvcb.TaiKhoanNV = sTaiKhoanNV;
+                nvcb.MaHoaDon = iMaHoaDon;
+                nvcb.TrangThai = 0;
+                nvcb.TienHuHong = 0;
+                nvcb.GioBatDau = Convert.ToDateTime(dt_GioBatDau);
+                nvcb.GioKetThucDuKien = null;
+                nvcb.TienThuong = 0;
+                nvcb.TienLuong = 0;
+                db.NhanVienChayBan.Add(nvcb);
+                db.SaveChanges();
 
-            //var hoaDon = db.HoaDon.SingleOrDefault(n => n.MaHoaDon == iMaHoaDon);
-            //hoaDon.TenKhachHang = tenkhachhang;
-            //hoaDon.SDTKhachHang = dienThoai;
-
-            //#region Kiểm tra số điện thoại khách hàng đã tồn tại chưa
-            //var demSoHoaDon = db.HoaDon.Where(n => n.SDTKhachHang == dienThoai).OrderByDescending(n => n.MaHoaDon).FirstOrDefault();
-            //if (demSoHoaDon != null)
-            //{
-            //    hoaDon.TongHoaDon = demSoHoaDon.TongHoaDon + 1;
-            //    hoaDon.TenKhachHang = demSoHoaDon.TenKhachHang;
-            //}
-            //else
-            //{
-            //    hoaDon.TongHoaDon = 1;
-            //}
-            //#endregion
-            //db.SaveChanges();
-            return View();
+                return Redirect(strURL);
+            }
+            else
+            {
+                return RedirectToAction("NhanVienChayBan", "Error");
+            }
         }
     }
 }

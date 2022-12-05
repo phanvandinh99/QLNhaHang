@@ -127,25 +127,25 @@
 <!-- #endregion -->
 
 <div class="card mb-5 w-100 sw-lg-35" style="margin-bottom:0.5rem !important">
-    @*@using (Html.BeginForm("ChuyenBan", "HoaDon", new { @iMaHoaDon = Model.a }))
-        {*@
-    <div class="card-body">
-        <div class="mb-4">
-            <div class="mb-2">
-                <label class="text-alternate text-muted mb-1" style="text-align:center">Thêm Nhân Viên Chạy Bàn:</label>
-                <select class="form-select" name="Tang">
-                    @foreach (var item in listNVChayBan)
-                    {
-                        <option value="@item.TaiKhoanNV" style="color:black">@item.TenNhanVien</option>
-                    }
-                </select>
+    @using (Html.BeginForm("NhanVienChayBan", "HoaDon", new { @iMaHoaDon = ViewBag.MaHoaDon, @dt_GioBatDau = ViewBag.NgayBatDau, @strURL = Request.Url.ToString() }))
+    {
+        <div class="card-body">
+            <div class="mb-4">
+                <div class="mb-2">
+                    <label class="text-alternate text-muted mb-1" style="text-align:center">Thêm Nhân Viên Chạy Bàn:</label>
+                    <select class="form-select" name="sTaiKhoanNV">
+                        @foreach (var item in listNVChayBan)
+                        {
+                            <option value="@item.TaiKhoanNV" style="color:black">@item.TenNhanVien</option>
+                        }
+                    </select>
+                </div>
             </div>
-        </div>
 
-        <button class="btn btn-icon btn-icon-end btn-primary w-100" type="submit">
-            <span>Thêm Nhân Viên</span>
-        </button>
-        <br />
-    </div>
-    @*//}*@
+            <button class="btn btn-icon btn-icon-end btn-primary w-100" type="submit">
+                <span>Thêm Nhân Viên</span>
+            </button>
+            <br />
+        </div>
+    }
 </div>

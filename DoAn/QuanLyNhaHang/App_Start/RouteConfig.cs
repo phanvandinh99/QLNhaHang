@@ -24,7 +24,7 @@ namespace QuanLyNhaHang
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { Controller = "Home", action = "Index", id = UrlParameter.Optional },
+                defaults: new { Controller = "DangNhap", action = "DangNhap", id = UrlParameter.Optional },
                 namespaces: new string[] { "QuanLyNhaHang.Areas.NhanVien.Controllers" }
             ).DataTokens.Add("area", "NhanVien");
 

@@ -10,6 +10,7 @@
     IEnumerable<MonAn> listMonAn = (IEnumerable<MonAn>)ViewBag.DanhSachMonAn;
     IEnumerable<ChiTietHoaDon> listMonAnKhachChon = (IEnumerable<ChiTietHoaDon>)ViewBag.MonAnKhachChon;
     IEnumerable<Tang> listBan = (IEnumerable<Tang>)ViewBag.Tang;
+    IEnumerable<NhanVienChayBan> listNhanVienChayBan = (IEnumerable<NhanVienChayBan>)ViewBag.NhanVienChayBan;
 }
 
 <!-- #endregion -->
@@ -260,32 +261,28 @@
             </div>
             <!-- #region Nhân Viên Chạy Bàn -->
             <div class="card mb-5 w-100 sw-lg-35" style="margin-bottom:0.5rem !important">
-                @using (Html.BeginForm("ChuyenBan", "HoaDon", new { @iMaHoaDon = Model.MaHoaDon }))
+                @using (Html.BeginForm("LstNhanVienChayBan", "HoaDon", new { @iMaHoaDon = Model.MaHoaDon }))
                 {
                     <div class="card-body">
                         <div class="mb-4">
                             <div class="mb-2">
-                                <label class="text-alternate text-muted mb-1" style="text-align:center">Danh Sách Nhân Viên Phục Vụ Tiệc Này:</label>
-                                <select class="form-select" name="Tang">
-                                    @foreach (var item in listBan)
+                                <label class="text-alternate text-muted mb-1" style="text-align:center">
+                                    Nhân viên phục vụ:
+                                </label><br />
+                                @if (null == listNhanVienChayBan)
+                                {
+                                    <span>Chưa có.</span>
+                                }
+                                else
+                                {
+                                    foreach (var item in listNhanVienChayBan)
                                     {
-                                        if (item.TinhTrang == 1) //đã có người
-                                        {
-                                            <option style="color: red" value="@item.MaBan">Bàn @item.TenBan | @item.Khu.TenTang | @item.SoGhe ghế</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@item.MaBan" style="color:black">Bàn @item.TenBan | @item.Khu.TenTang | @item.SoGhe ghế</option>
-                                        }
+                                        <b>@item.NhanVien.TenNhanVien</b><br />
                                     }
-                                </select>
+                                }
                             </div>
                         </div>
-
-                        <button class="btn btn-icon btn-icon-end btn-primary w-100" type="submit">
-                            <span>Thêm Nhân Viên</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-chevron-right"><path d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path></svg>
-                        </button>
+                        <button class="btn btn-icon btn-icon-end btn-primary w-100" type="submit">Nhân Viên Chạy Bàn</button>
                         <br />
                     </div>
                 }

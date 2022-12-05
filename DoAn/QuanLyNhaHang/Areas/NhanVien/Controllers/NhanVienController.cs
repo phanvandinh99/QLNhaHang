@@ -19,6 +19,13 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
             var list = db.NhanVien.Where(n => n.MaQuyen_id == 2).OrderBy(n => n.MaQuyen_id).ToList();
             return View(list);
         }
+
+        public ActionResult DSNhanVienPhucVu()
+        {
+            var list = db.NhanVien.Where(n => n.MaQuyen_id == 4).OrderBy(n => n.MaQuyen_id).ToList();
+            return View(list);
+        }
+
         public ActionResult ThemNhanVien()
         {
             ViewBag.Quyen = db.Quyen.ToList();
