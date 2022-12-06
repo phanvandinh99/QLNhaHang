@@ -794,7 +794,7 @@ namespace QuanLyNhaHang.Areas.NhanVien.Controllers
                 nvcb.GioBatDau = Convert.ToDateTime(dt_GioBatDau);
                 nvcb.GioKetThucDuKien = null;
                 nvcb.TienThuong = 0;
-                nvcb.TienLuong = 0;
+                nvcb.TienLuong = 200000;
                 db.NhanVienChayBan.Add(nvcb);
                 db.SaveChanges();
 
